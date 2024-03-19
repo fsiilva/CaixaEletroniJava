@@ -1,0 +1,90 @@
+import java.util.Scanner;
+
+public class caixa_eletronico {
+
+    public static void main(String[] args) {
+        int opcao;
+        String nome;
+        int i = 0;
+        double saque, deposito;
+        double saldo = 650;
+        Scanner op = new Scanner(System.in);
+        Scanner nm = new Scanner(System.in);
+        //mensagem de boas vindas
+        System.out.println("SEJA BEM VINDO AO SEU BANCO! DIGITE SEU NOME PARA CONTINUAR:");
+        //ler a variavel nome
+        nome = nm.nextLine();
+        
+        //Laço onde será repetido menu de opções
+        do{
+
+            System.out.println("DIGITE UMA DAS OPÇÕES ABAIXO: ");
+            System.out.println("1 PARA DEPOSITO;");
+            System.out.println("2 PARA SAQUE;");
+            System.out.println("3 PARA CONSULTA DE SALDO;");
+            System.out.println("0 PARA FINALIZAR A OPERAÇÃO");
+            //será lido a opção digitada pelo usuario.
+            opcao = op.nextInt();
+
+            // será testado a opção digitada para execultar o comando
+            switch(opcao){
+            	//Primeiro caso, se digitar o 0 será encerrado o programa.
+                case 0:
+                    System.out.println("OBRIGADO POR SER NOSSO CLIENTE!");
+                    break;
+                //Segundo caso, onde receberá a opção 1 e será acresentado o valor de deposito ao saldo atual.    
+                case 1:
+                    System.out.println("DIGITE O VALOR DE DEPOSITO:");
+                    // ler o valor deposito
+                    deposito = op.nextDouble();
+                    if (deposito < 0){
+                    System.out.println("VALOR INVALIDO:");
+                    }
+                 // atualiza o saldo
+                    saldo = saldo + deposito;
+                    break;
+                // Terceiro caso, onde receberá a opção 2 e será testado o valor do saque, caso seja inferior ao saldo atual exibirá uma mensagem de saldo insuficiente.    
+                case 2:
+                    System.out.println("DIGITE O VALOR DO SAQUE:");
+                    //ler o valor do saque
+                    saque = op.nextDouble();
+                    if (saque < 0){
+                    System.out.println("VALOR INVALIDO:");
+                    }
+                    // verifica se o valor é maior que o saldo atual.
+                    else if(saque > saldo){
+                    	//Mensagem caso o saque seja maior que o saldo atual.
+                        System.out.println("SALDO INSUFICIENTE!");
+
+                    }
+                    //caso sque seja menor ou igual ao saldo atual.
+                    else
+                    {
+                        System.out.println("POR FAVOR AGUARDE, ESTAMOS CONTANDO AS CEDULAS...");
+                        System.out.println("RETIRE O DINHEIRO DO LOCAL INDICADO!");
+                        //atualiza o saldo.
+                        saldo = saldo - saque;
+                    }
+                    break;
+                // cansulta de saldo.
+                case 3:
+                	//exibe o saldo atual.
+                    System.out.println("SEU SALDO EM CONTA É:" + saldo);
+                    break;
+                    
+                //mensagem para opção diferente dos valores entre 0 a 3.    
+                default:
+                    System.out.println("OPÇÃO INVALIDA!!!");
+
+            }
+        }while(opcao != 0);
+
+        //mensagem para sair do programa.
+        System.out.println("PROGRAMA ENCERRADO!");
+    }
+
+} 
+
+
+
+
